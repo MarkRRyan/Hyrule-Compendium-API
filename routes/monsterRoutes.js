@@ -3,7 +3,7 @@ const Monster = require('../models/Monster')
 
 const router = express.Router()
 
-
+const app = express();
   
 // Get All Route
 app.get('/', async (req, res) => {
