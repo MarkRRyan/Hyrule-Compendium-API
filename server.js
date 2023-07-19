@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const monsters = require('./models/monsters')
+const monsterRoutes = require('./routes/monsterRoutes')
 
 const app = express();
 
@@ -23,43 +23,12 @@ mongoose.connect(process.env.DATABASE_URL, {
     console.log('Connected to MongoDB');
   });
 
-// Controllers
-
+// Routing
 app.get('/', (req, res) => {
     res.send('Welcome to Hyrule')
 })
+app.use('/monsters', monsterRoutes)
 
-// Get All Route
-app.get('/monsters/', (req, res) => {
-    res.send(monsters)
-})
-
-// New Route
-app.get('/monsters/new/', (req, res) => {
-    res.send('form for new monster')
-})
-
-
-
-// Get By Param Route
-
-app.get('/monsters/:param', (req, res) => {
-    const param = req.params.param
-    let monster
-    // for searching by Id
-    if (!isNaN(param)) {
-        monster = monsters.find(function(i) {
-            return i.compendiumId === parseInt(param)
-        })
-    } else {
-        // for searching by name
-        monster = monsters.find(function (i) {
-            return i.name.toLowerCase() === param.toLowerCase()
-        })
-    }
-
-    res.send(monster)
-})
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
