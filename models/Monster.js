@@ -11,10 +11,6 @@ const monsterSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      HP: {
-        type: Number,
-        required: true,
-      },
       commonLocations: {
         type: [String],
         required: true,

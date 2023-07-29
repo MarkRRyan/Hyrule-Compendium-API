@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Monster = require('../models/Monster');
+const Monster = require('./models/Monster');
 require('dotenv').config()
 
 mongoose.connect(process.env.DATABASE_URL, {
@@ -27,7 +27,7 @@ const monstersData = [
             'Bokobin Fang'
         ],
         description: `This common species is a nuisance all over Hyrule. Some have unified in the time following the Great Calamity and have formed factions of bandits. While not very clever, they are at least intelligent enough to hunt beasts and grill the meat for food. Though they're typically ferocious carnivores, they actually enjoy fruit as well`,
-        image: `https://i.imgur.com/uRWW34v.jpg`
+        image: `https://i.imgur.com/Va5iIw5.jpg`
     },
     {
         compendiumId: 104,
@@ -102,7 +102,7 @@ const monstersData = [
 
 async function seedDatabase() {
   try {
-    await Monster.deleteMany();
+    // await Monster.deleteMany();
 
     const createdMonsters = await Monster.insertMany(monstersData);
     console.log('Seed data inserted:', createdMonsters);
